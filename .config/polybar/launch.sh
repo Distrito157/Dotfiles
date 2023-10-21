@@ -1,13 +1,11 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
-# Termine instâncias de barras em execução
-killall -q polybar
+# Terminate already running bar instances
+polybar-msg cmd quit
+# If all your bars have ipc enabled, you can also use
+# polybar-msg cmd quit
 
-# Espere até que os processos em execução sejam terminados
-while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
+# Launch Polybar, using default config location ~/.config/polybar/config.ini
+polybar example 2>&1 | tee -a /tmp/polybar.log & disown
 
-# execute a Polybar, usando a configuração padrão ~/.config/polybar/config
-polybar example -c ~/.config/polybar/config.ini &
-
-echo "Polybar lançada..."
-
+echo "Polybar launched..."
