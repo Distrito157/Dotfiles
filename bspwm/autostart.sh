@@ -1,14 +1,32 @@
 #!/usr/bin/env sh
 
-#Caracterexrandr --output DisplayPort-0 xrandr --output DisplayPort-0 --primary --mode 1366x768 --rotate normal --output HDMI-A-0 --mode 1024x768 --rotate normal --right-of DisplayPort-0
+# Monitor
 xrandr --output DisplayPort-0 --primary
 xrandr --output HDMI-A-0 --right-of DisplayPort-0
 xrandr --output DisplayPort-0 --brightness 1.2
+
+# teclado
 setxkbmap -layout br -option caps:swapescape &
+
+# wallpaper / background
 ~/.fehbg &
+
+# barra superior
 ~/.config/polybar/launch.sh &
+
+# cursor
 xsetroot -cursor_name left_ptr &
+
+# recarregar o .Xresources
 xrdb ~/.Xresources
-# picom &
-# conky -c ~/.config/conky/Mintaka/Mintaka.conf &
-# flameshot
+
+# Startando o flameshot {{{
+
+if pgrep -x "flameshot" > /dev/null; then
+  pkill -f "flameshot"
+  sleep 2s
+fi
+flameshot &
+
+# }}}
+
