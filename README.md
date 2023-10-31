@@ -1,5 +1,12 @@
+
+
 ### Aviso!
 Algumas anotações podem ser inúteis para você, isso é uma configuração pessoal, as anotações para mim são uma forma de eu não esquecer as modificações e programas que eu utilizo.
+
+#### TODO
+[ ] Criar arquivos separados para o polybar, como separar o módulos e etc.
+[ ] Detalhar bem a configuração geral de todos arquivos e principalmente do config.lua do lvim.
+
 
 #### [ 1 ] Especificações
 **OS**: [VoidLinux](https://voidlinux.org/)<br/>
