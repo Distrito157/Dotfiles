@@ -8,23 +8,6 @@ vim.cmd([[
 
 --}}}
 
--- MakeFile compile {{{
--- vim.cmd([[
--- " Configure o Makefile como o seu construtor padrão
--- set makeprg=make\ -s
-
--- function! CompileWithMake()
---   " Execute o comando make usando o AsyncRun sem exibir saída no console
---   silent AsyncRun -mode=2 -project -raw make > /dev/null 2>&1
-
--- endfunction
-
--- " Chame a função ao salvar um arquivo .cpp
--- autocmd BufWritePost *.cpp call CompileWithMake()
--- ]])
-
---}}}
-
 -- Emmet {{{
 local emmet_options = {
   capabilities = capabilities,
@@ -44,6 +27,8 @@ require("lvim.lsp.manager").setup("emmet_ls", emmet_options)
 
 -- Plugins {{{
 lvim.plugins = {
+
+  -- Markdown Preview (Ler markdown dinamicamente)
   {
     "iamcco/markdown-preview.nvim",
     init = function()
@@ -59,126 +44,15 @@ lvim.plugins = {
     end,
   },
 
+  -- Simbolos para o folding
   {
     "simrat39/symbols-outline.nvim",
     config = function()
       require('symbols-outline').setup()
     end
   },
-  --  {
-  --    "lunarvim/Onedarker.nvim"
-  --  },
-  --
-  --  {
-  --    "catppuccin/nvim",
-  --    as = "catppuccin",
-  --    config = function()
-  --      require("catppuccin").setup({
-  --        flavour = "macchiato", -- latte, frappe, macchiato, mocha
-  --        background = {         -- :h background
-  --          light = "latte",
-  --          dark = "mocha",
-  --        },
-  --        transparent_background = false, -- disables setting the background color.
-  --        show_end_of_buffer = false,     -- shows the '~' characters after the end of buffers
-  --        term_colors = false,            -- sets terminal colors (e.g. `g:terminal_color_0`)
-  --        dim_inactive = {
-  --          enabled = false,              -- dims the background color of inactive window
-  --          shade = "dark",
-  --          percentage = 0.15,            -- percentage of the shade to apply to the inactive window
-  --        },
-  --        no_italic = false,              -- Force no italic
-  --        no_bold = false,                -- Force no bold
-  --        no_underline = false,           -- Force no underline
-  --        styles = {                      -- Handles the styles of general hi groups (see `:h highlight-args`):
-  --          comments = { "italic" },      -- Change the style of comments
-  --          conditionals = { "italic" },
-  --          loops = {},
-  --          functions = {},
-  --          keywords = {},
-  --          strings = {},
-  --          variables = {},
-  --          numbers = {},
-  --          booleans = {},
-  --          properties = {},
-  --          types = {},
-  --          operators = {},
-  --        },
-  --        highlight_overrides = {
-  --          mocha = function(mocha)
-  --            return {
-  --              NvimTreeNormal = { bg = mocha.none },
-  --            }
-  --          end,
-  --        },
-  --        custom_highlights = {},
-  --        integrations = {
-  --          cmp = true,
-  --          gitsigns = true,
-  --          nvimtree = true,
-  --          treesitter = true,
-  --          notify = false,
-  --          mini = false,
-  --          -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
-  --        },
-  --      })
-  --    end,
-  --  },
-  --
-  --  {
-  --    "rebelot/kanagawa.nvim",
-  --    -- Default options:
-  --    config = function()
-  --      require('kanagawa').setup({
-  --        compile = false,  -- enable compiling the colorscheme
-  --        undercurl = true, -- enable undercurls
-  --        commentStyle = { italic = true },
-  --        functionStyle = {},
-  --        keywordStyle = { italic = true },
-  --        statementStyle = { bold = true },
-  --        typeStyle = {},
-  --        transparent = false,    -- do not set background color
-  --        dimInactive = false,    -- dim inactive window `:h hl-NormalNC`
-  --        terminalColors = false, -- define vim.g.terminal_color_{0,17}
-  --        colors = {              -- add/modify theme and palette colors
-  --          palette = {},
-  --          theme = {
-  --            wave = {},
-  --            lotus = {},
-  --            dragon = {},
-  --            all = {
-  --              ui = {
-  --                bg_gutter = "none"
-  --              }
-  --            }
-  --          },
-  --        },
-  --        overrides = function(colors) -- add/modify highlights
-  --          return {}
-  --        end,
-  --        theme = "dragon",  -- Load "wave" theme when 'background' option is not set
-  --        background = {     -- map the value of 'background' option to a theme
-  --          dark = "dragon", -- try "dragon" !
-  --          light = "lotus"
-  --        },
-  --      })
-  --    end,
-  --  },
-  --
-  --  {
-  --    "nyoom-engineering/oxocarbon.nvim"
-  --  },
-  --
-  --  {
-  --    { 'kristijanhusak/orgmode.nvim' }
-  --  },
-  --
-  --  {
-  --    'akinsho/org-bullets.nvim',
-  --    config = function()
-  --      require('org-bullets').setup()
-  --    end,
-  --  },
+
+  -- Color picker
   {
     "ziontee113/color-picker.nvim",
     config = function()
@@ -186,6 +60,7 @@ lvim.plugins = {
     end,
   },
 
+  -- surround
   {
     "kylechui/nvim-surround",
     version = "*", -- Use for stability; omit to use `main` branch for the latest features
@@ -197,6 +72,7 @@ lvim.plugins = {
     end
   },
 
+  -- colorir cores
   {
     'norcalli/nvim-colorizer.lua',
     config = function()
@@ -216,6 +92,7 @@ lvim.plugins = {
     end,
   },
 
+  -- auto salvar
   {
     "Pocco81/auto-save.nvim",
     config = function()
@@ -223,6 +100,7 @@ lvim.plugins = {
     end,
   },
 
+  -- comentários
   {
     "folke/todo-comments.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
@@ -294,35 +172,7 @@ lvim.plugins = {
     }
   },
 
-  --  {
-  --    'rcarriga/nvim-notify'
-  --  },
-  --
-  --  -- {
-  --  --   'mg979/vim-visual-multi' // Multiline Don't need. :D
-  --  -- },
-  --  -- {
-  --  --   "stefanlogue/hydrate.nvim",
-  --  --   -- This installs the latest stable release.
-  --  --   -- Set to false or omit to install the latest development version
-  --  --   version = "*",
-  --  --   opts = {
-  --  --     -- See below for config options
-  --  --     -- The interval between notifications in minutes
-  --  --     minute_interval = 25,
-  --
-  --  --     -- The render style for notifications
-  --  --     -- Accepted values are "default", "minimal", "simple" or "compact"
-  --  --     render_style = "compact",
-  --
-  --  --     -- Loads time of last drink on startup
-  --  --     -- Useful if you don't have long-running neovim instances
-  --  --     -- or if you tend to have multiple instances running at a time
-  --  --     persist_timer = false
-  --  --   }
-  --  -- },
-  --  -- UFO folding
-  --
+  -- statuscol
   {
     "luukvbaal/statuscol.nvim",
     config = function()
@@ -338,46 +188,7 @@ lvim.plugins = {
     end,
   },
 
-  --  -- {
-  --  --   "kevinhwang91/nvim-ufo",
-  --  --   dependencies = {
-  --  --     "kevinhwang91/promise-async",
-  --  --     {
-  --  --       "luukvbaal/statuscol.nvim",
-  --  --       config = function()
-  --  --         local builtin = require("statuscol.builtin")
-  --  --         require("statuscol").setup({
-  --  --           relculright = true,
-  --  --           segments = {
-  --  --             { text = { builtin.foldfunc },      click = "v:lua.ScFa" },
-  --  --             { text = { "%s" },                  click = "v:lua.ScSa" },
-  --  --             { text = { builtin.lnumfunc, " " }, click = "v:lua.ScLa" },
-  --  --           },
-  --  --         })
-  --  --       end,
-  --  --     },
-  --  --   },
-  --  --   event = "BufReadPost",
-  --  --   opts = {
-  --  --     -- provider_selector = function()
-  --  --     --   return { "treesitter", "indent" }
-  --  --     -- end,
-  --  --   },
-  --
-  --  --   init = function()
-  --  --     vim.keymap.set("n", "zR", function()
-  --  --       require("ufo").openAllFolds()
-  --  --     end)
-  --  --     vim.keymap.set("n", "zM", function()
-  --  --       require("ufo").closeAllFolds()
-  --  --     end)
-  --  --   end,
-  --  -- },
-  --  -- Folding preview, by default h and l keys are used.
-  --  -- On first press of h key, when cursor is on a closed fold, the preview will be shown.
-  --  -- On second press the preview will be closed and fold will be opened.
-  --  -- When preview is opened, the l key will close it and open fold. In all other cases these keys will work as usual.
-  --  -- { "anuvyklack/fold-preview.nvim", dependencies = "anuvyklack/keymap-amend.nvim", config = true },
+  -- norg (um .org para o neovim)
   {
     "nvim-neorg/neorg",
     build = ":Neorg sync-parsers",
@@ -425,6 +236,7 @@ lvim.plugins = {
     end,
   },
 
+  -- asyncrun
   {
     'skywind3000/asyncrun.vim'
   },
@@ -434,54 +246,15 @@ lvim.plugins = {
 
 -- Vim Fold {{{
 -- Alterar o tema do folding:
--- /home/yank/.local/share/lunarvim/site/pack/lazy/opt/lunar.nvim/lua/lunar/theme.lua
---
--- Lembrar dos Folds
-
--- vim.cmd(
---   [[
--- augroup remember_folds
---   autocmd!
---   autocmd BufWinLeave *.* mkview
---   autocmd BufWinEnter *.* silent! loadview
--- augroup END
--- ]]
--- )
-
--- Ocultar os --
--- vim.cmd(
---   [[
--- set fillchars=fold:\
--- ]]
--- )
-
--- vim.cmd('set foldmethod=manual')
+--  NOTE: /home/yank/.local/share/lunarvim/site/pack/lazy/opt/lunar.nvim/lua/lunar/theme.lua
 
 -- Defina um foldtext personalizado para ocultar '--, #, //' nas linhas dobradas
 vim.cmd([[
-  " function! FoldFilter(text)
-  "   " Remova '#', '//' e '--' com espaços em branco no início das linhas dobradas
-  "   return substitute(a:text, '^\s*\(#\|\/\/\|--\)\s*', '', '')
-  " endfunction
-
-  " function! FoldText()
-  "   let folded_text = getline(v:foldstart)
-  "   return FoldFilter(folded_text)
-  " endfunction
-
-  " set foldtext=FoldText()
-
 function! FoldFilter(text)
-  "   " Remova '#', '//' e '--' com espaços em branco no início das linhas dobradas
+    " Remova '#', '//' e '--' com espaços em branco no início das linhas dobradas
     let filtered_text = substitute(a:text, '^\s*\(#\|\/\/\|--\)\s*', '', '')
     " Remova os marcadores de folding visíveis
     return substitute(filtered_text, '{{{', '', 'g')
-  " " }}}
-
-" Remova '#', '//' e '--' com espaços em branco no início das linhas dobradas
-  "   let filtered_text = substitute(a:text, '^\(\s*\)\(#\|\/\/\|--\)\s*', '\1', '')
-  "   " Remova os marcadores de folding visíveis
-  "   return substitute(filtered_text, '{{{', '', 'g')
   " " }}}
 endfunction
 
@@ -495,9 +268,7 @@ set foldtext=FoldText()
 ]]
 )
 
--- UFO folding
--- vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
--- vim.o.foldlevelstart = 99
+-- opções para o folding
 vim.o.foldenable = true
 vim.o.foldcolumn = "1"
 
@@ -514,12 +285,7 @@ vim.opt.foldmethod = "marker"
 
 -- }}}
 
--- Org mode {{{
-lvim.builtin.orgmode = { active = true }
--- Ative o plugin org-bullets
-lvim.builtin.orgmode.org_bullets = true
-
--- color picker
+-- color picker {{{
 local opts = { noremap = true, silent = true }
 
 vim.keymap.set("n", "<C-c>", "<cmd>PickColor<cr>", opts)
@@ -545,7 +311,9 @@ vim.keymap.set("i", "<C-c>", "<cmd>PickColorInsert<cr>", opts)
 --   ["text_highlight_group"] = "Normal",        --default
 -- })
 
--- vim.cmd([[hi FloatBorder guibg=NONE]]) -- if you don't want weird border background colors around the popup.}}}
+-- vim.cmd([[hi FloatBorder guibg=NONE]]) -- if you don't want weird border background colors around the popup.
+
+-- }}}
 
 -- Formatters {{{
 local formatters = require "lvim.lsp.null-ls.formatters"
@@ -588,7 +356,7 @@ linters.setup {
 -- )
 -- }}}
 
--- Options {{{
+-- Options gerais {{{
 vim.opt.relativenumber = true
 -- lvim.transparent_window = false
 
@@ -601,9 +369,11 @@ lvim.use_icons = true
 
 -- Colorscheme {{{
 lvim.builtin.time_based_themes = false
--- lvim.transparent_window = true}}}
+-- lvim.transparent_window = true
 
--- Dashboard Pessoal {{{
+-- }}}
+
+-- Dashboard logo {{{
 lvim.builtin.alpha.dashboard.section.header.val = {
   [[ __                                       __  __                     ]],
   [[/\ \                                     /\ \/\ \  __                ]],
