@@ -8,7 +8,9 @@
 Algumas anotações podem ser inúteis para você, isso é uma configuração pessoal, as anotações para mim são uma forma de eu não esquecer as modificações e programas que eu utilizo.
 
 ### TODO
-- Detalhar bem a configuração geral de todos arquivos e principalmente do config.lua do lvim.
+- [x] Detalhar bem a configuração geral de todos arquivos e principalmente do config.lua do lvim.
+- Criar um script de pré-instalação do VoidLinux e pós instalação.
+- Deixar alguns scripts dinâmicos, como o utils/scripts/modify.sh
 
 
 ### Especificações
