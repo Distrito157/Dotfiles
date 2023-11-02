@@ -1,3 +1,8 @@
+### Screenshots
+![Imagen 1](./utils/screenshots/img1.png)
+![Imagen 2](./utils/screenshots/img2.png)
+![Imagen 3](./utils/screenshots/img3.png)
+
 
 ### Aviso
 Algumas anotações podem ser inúteis para você, isso é uma configuração pessoal, as anotações para mim são uma forma de eu não esquecer as modificações e programas que eu utilizo.
